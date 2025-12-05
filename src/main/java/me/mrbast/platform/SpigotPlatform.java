@@ -12,7 +12,15 @@ import org.bukkit.entity.Player;
 
 public class SpigotPlatform extends Platform{
 
-
+    private static final LegacyComponentSerializer SERIALIZER = LegacyComponentSerializer.builder()
+            .character('§')
+            .hexCharacter('#')
+            .hexColors()
+            .extractUrls()
+            .useUnusualXRepeatedCharacterHexFormat()
+            .flattener(ComponentFlattener.basic())
+            .formats(CharacterAndFormat.defaults())
+            .build();;
 
     private static final MiniMessage mm = MiniMessage.miniMessage();
 
@@ -55,7 +63,8 @@ public class SpigotPlatform extends Platform{
 
 
     public LegacyComponentSerializer serializer() {
-        return LegacyComponentSerializer.builder()
+        return SERIALIZER;
+        /*return LegacyComponentSerializer.builder()
                 .character('§')
                 .hexCharacter('#')
                 .hexColors()
@@ -64,6 +73,8 @@ public class SpigotPlatform extends Platform{
                 .flattener(ComponentFlattener.basic())
                 .formats(CharacterAndFormat.defaults())
                 .build();
+
+         */
     }
 
 

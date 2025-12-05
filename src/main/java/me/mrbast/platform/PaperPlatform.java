@@ -4,12 +4,25 @@ package me.mrbast.platform;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.flattener.ComponentFlattener;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class PaperPlatform extends Platform{
+
+
+
+    private static final LegacyComponentSerializer SERIALIZER = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.builder()
+            .character('§')
+            .hexCharacter('#')
+            .hexColors()
+            .extractUrls()
+            .useUnusualXRepeatedCharacterHexFormat()
+            .flattener(ComponentFlattener.basic())
+            .build();
+
 
     private static final MiniMessage mm = MiniMessage.miniMessage();
 
@@ -46,7 +59,8 @@ public class PaperPlatform extends Platform{
     }
 
     public net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer serializer() {
-        return net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.builder()
+        return SERIALIZER;
+        /*return net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.builder()
                 .character('§')
                 .hexCharacter('#')
                 .hexColors()
@@ -54,5 +68,7 @@ public class PaperPlatform extends Platform{
                 .useUnusualXRepeatedCharacterHexFormat()
                 .flattener(ComponentFlattener.basic())
                 .build();
+
+         */
     }
 }
