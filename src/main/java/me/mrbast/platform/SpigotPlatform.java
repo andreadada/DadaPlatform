@@ -64,17 +64,6 @@ public class SpigotPlatform extends Platform{
 
     public LegacyComponentSerializer serializer() {
         return SERIALIZER;
-        /*return LegacyComponentSerializer.builder()
-                .character('§')
-                .hexCharacter('#')
-                .hexColors()
-                .extractUrls()
-                .useUnusualXRepeatedCharacterHexFormat()
-                .flattener(ComponentFlattener.basic())
-                .formats(CharacterAndFormat.defaults())
-                .build();
-
-         */
     }
 
 
