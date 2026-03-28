@@ -14,18 +14,20 @@ public  class Formatter{
 
     private final Platform platform;
 
-    private String message;
+    private final String message;
 
     public Formatter(Platform platform, String message) {
         this.platform = platform;
         this.message = message;
     }
 
-
+    /*
     public Formatter setText(String text){
         this.message = text;
         return this;
     }
+
+     */
 
     public void send(Format format, Player... players){
 
@@ -40,6 +42,7 @@ public  class Formatter{
     }
     public String format(Format format){
         String formatted = message;
+        if(formatted == null) return  message;
         for(Map.Entry<String, Supplier<String>> pair : format.getValues().entrySet()){
             formatted = formatted.replace("%"+pair.getKey()+"%", pair.getValue().get());
         }
@@ -67,9 +70,22 @@ public  class Formatter{
         return platform.format(format(format));
     }
 
+    public String getClean(){
+        return this.message;
+    }
+
 
 
     public void send(Format name, CommandSender sender) {
         platform.sendMessage(sender, format(name));
+    }
+
+
+    @Override
+    public String toString() {
+        return "Formatter{" +
+                "platform=" + platform +
+                ", message='" + message + '\'' +
+                '}';
     }
 }

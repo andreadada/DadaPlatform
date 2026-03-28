@@ -65,4 +65,11 @@ public class Format {
         return new FormatArgument(parameters);
     }
 
+
+    @Override
+    public String toString() {
+        return "Format{" +
+                "values=" + values +
+                '}';
+    }
 }

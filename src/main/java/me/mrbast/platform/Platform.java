@@ -2,6 +2,8 @@ package me.mrbast.platform;
 
 import me.mrbast.platform.format.Formatter;
 import me.mrbast.platform.format.FormatterBuilder;
+import org.bukkit.Bukkit;
+import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -13,11 +15,14 @@ public abstract class Platform {
 
 
     public static Platform prepare(Plugin plugin){
-
-        Platform platform = new SpigotPlatform();
+        Server server = Bukkit.getServer();
+        String name = server.getName();       // "CraftBukkit", "Spigot", "Paper", etc.
+        String version = server.getVersion(); // Full string with implementation info
+        String txt = "Platform: " + name + " | Version: " + version;
+        Platform platform = new SpigotPlatform(txt);
         try {
             Class.forName("io.papermc.paper.math.BlockPosition");
-            platform = new PaperPlatform();
+            platform = new PaperPlatform(txt);
         } catch (ClassNotFoundException e) {
 
         }

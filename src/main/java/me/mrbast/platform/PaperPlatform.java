@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 
 public class PaperPlatform extends Platform{
 
-
+    private String platform;
 
     private static final LegacyComponentSerializer SERIALIZER = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.builder()
             .character('§')
@@ -25,6 +25,11 @@ public class PaperPlatform extends Platform{
 
 
     private static final MiniMessage mm = MiniMessage.miniMessage();
+
+    public PaperPlatform(String txt) {
+        super();
+        this.platform = txt;
+    }
 
     public static Component toComponent(String text){
         return mm.deserialize(text);
@@ -70,5 +75,12 @@ public class PaperPlatform extends Platform{
                 .build();
 
          */
+    }
+
+    @Override
+    public String toString() {
+        return "PaperPlatform{" +
+                "platform='" + platform + '\'' +
+                '}';
     }
 }

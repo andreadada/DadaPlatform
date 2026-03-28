@@ -12,6 +12,9 @@ import org.bukkit.entity.Player;
 
 public class SpigotPlatform extends Platform{
 
+
+    private String platform;
+
     private static final LegacyComponentSerializer SERIALIZER = LegacyComponentSerializer.builder()
             .character('§')
             .hexCharacter('#')
@@ -24,8 +27,8 @@ public class SpigotPlatform extends Platform{
 
     private static final MiniMessage mm = MiniMessage.miniMessage();
 
-    public SpigotPlatform(){
-
+    public SpigotPlatform(String string){
+        this.platform = string;
     }
 
     @Override
@@ -67,6 +70,10 @@ public class SpigotPlatform extends Platform{
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "SpigotPlatform{" +
+                "platform='" + platform + '\'' +
+                '}';
+    }
 }
