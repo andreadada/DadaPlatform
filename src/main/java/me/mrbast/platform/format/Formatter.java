@@ -31,18 +31,19 @@ public  class Formatter{
 
     public void send(Format format, Player... players){
 
-        String formatted = message;
-        for(Map.Entry<String, Supplier<String>> pair : format.getValues().entrySet()){
-            formatted = formatted.replace("%"+pair.getKey()+"%", pair.getValue().get());
-        }
+        String formatted = format(format);
 
         for (Player player : players) {
             platform.sendMessage(player, formatted);
         }
     }
     public String format(Format format){
-        String formatted = message;
-        if(formatted == null) return  message;
+        return formatText(message, format);
+    }
+
+    private String formatText(String text, Format format){
+        String formatted = text;
+        if(formatted == null || format == null) return formatted;
         for(Map.Entry<String, Supplier<String>> pair : format.getValues().entrySet()){
             formatted = formatted.replace("%"+pair.getKey()+"%", pair.getValue().get());
         }
@@ -59,6 +60,49 @@ public  class Formatter{
     public void send(Player... players){
         for (Player player : players) {
             platform.sendMessage(player, message);
+        }
+    }
+
+    public void sendActionbar(Player... players){
+        for (Player player : players) {
+            platform.sendActionbar(player, message);
+        }
+    }
+
+    public void sendActionbar(Format format, Player... players){
+        String formatted = format(format);
+        for (Player player : players) {
+            platform.sendActionbar(player, formatted);
+        }
+    }
+
+    public void sendActionBar(Player... players){
+        sendActionbar(players);
+    }
+
+    public void sendActionBar(Format format, Player... players){
+        sendActionbar(format, players);
+    }
+
+    public void sendTitle(String subtitle, Player... players){
+        sendTitle(subtitle, Platform.DEFAULT_TITLE_FADE_IN, Platform.DEFAULT_TITLE_STAY, Platform.DEFAULT_TITLE_FADE_OUT, players);
+    }
+
+    public void sendTitle(Format format, String subtitle, Player... players){
+        sendTitle(format, subtitle, Platform.DEFAULT_TITLE_FADE_IN, Platform.DEFAULT_TITLE_STAY, Platform.DEFAULT_TITLE_FADE_OUT, players);
+    }
+
+    public void sendTitle(String subtitle, int fadeIn, int stay, int fadeOut, Player... players){
+        for (Player player : players) {
+            platform.sendTitle(player, message, subtitle, fadeIn, stay, fadeOut);
+        }
+    }
+
+    public void sendTitle(Format format, String subtitle, int fadeIn, int stay, int fadeOut, Player... players){
+        String formattedTitle = format(format);
+        String formattedSubtitle = formatText(subtitle, format);
+        for (Player player : players) {
+            platform.sendTitle(player, formattedTitle, formattedSubtitle, fadeIn, stay, fadeOut);
         }
     }
 
