@@ -3,6 +3,7 @@ package me.mrbast.platform;
 import me.mrbast.platform.format.Formatter;
 import me.mrbast.platform.format.FormatterBuilder;
 import me.mrbast.platform.scheduler.PlatformScheduler;
+import me.mrbast.platform.scheduler.PlatformTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Server;
@@ -121,6 +122,56 @@ public abstract class Platform {
 
     public void runForLater(Entity entity, Runnable task, long delayTicks) {
         scheduler.runForLater(entity, task, delayTicks);
+    }
+
+    public PlatformTask scheduleGlobal(Runnable task) {
+        return scheduler.scheduleGlobal(task);
+    }
+
+    public PlatformTask scheduleGlobalLater(Runnable task, long delayTicks) {
+        return scheduler.scheduleGlobalLater(task, delayTicks);
+    }
+
+    public PlatformTask scheduleGlobalRepeating(Runnable task, long initialDelayTicks, long periodTicks) {
+        return scheduler.scheduleGlobalRepeating(task, initialDelayTicks, periodTicks);
+    }
+
+    public PlatformTask scheduleAsync(Runnable task) {
+        return scheduler.scheduleAsync(task);
+    }
+
+    public PlatformTask scheduleAsyncLater(Runnable task, long delayTicks) {
+        return scheduler.scheduleAsyncLater(task, delayTicks);
+    }
+
+    public PlatformTask scheduleAsyncRepeating(Runnable task, long initialDelayTicks, long periodTicks) {
+        return scheduler.scheduleAsyncRepeating(task, initialDelayTicks, periodTicks);
+    }
+
+    public PlatformTask scheduleAt(Location location, Runnable task) {
+        return scheduler.scheduleAt(location, task);
+    }
+
+    public PlatformTask scheduleAtLater(Location location, Runnable task, long delayTicks) {
+        return scheduler.scheduleAtLater(location, task, delayTicks);
+    }
+
+    public PlatformTask scheduleAtRepeating(Location location, Runnable task,
+                                            long initialDelayTicks, long periodTicks) {
+        return scheduler.scheduleAtRepeating(location, task, initialDelayTicks, periodTicks);
+    }
+
+    public PlatformTask scheduleFor(Entity entity, Runnable task) {
+        return scheduler.scheduleFor(entity, task);
+    }
+
+    public PlatformTask scheduleForLater(Entity entity, Runnable task, long delayTicks) {
+        return scheduler.scheduleForLater(entity, task, delayTicks);
+    }
+
+    public PlatformTask scheduleForRepeating(Entity entity, Runnable task,
+                                             long initialDelayTicks, long periodTicks) {
+        return scheduler.scheduleForRepeating(entity, task, initialDelayTicks, periodTicks);
     }
 
     public abstract String getLabel();

@@ -48,27 +48,47 @@ public class SpigotPlatform extends Platform {
 
 
     public String getLabel() {
-        return "Spigot or Paper 1.16.5-";
+        return isFolia() ? "Folia (legacy message bridge)" : "Spigot or Paper 1.16.5-";
     }
 
 
     @Override
     public void sendMessage(Player player, String message) {
+        if (isFolia()) {
+            scheduler().runFor(player, () -> player.sendMessage(format(message)));
+            return;
+        }
         player.sendMessage(format(message));
     }
 
     @Override
     public void sendMessage(CommandSender sender, String message) {
+        if (isFolia()) {
+            if (sender instanceof Player) {
+                sendMessage((Player) sender, message);
+            } else {
+                scheduler().runGlobal(() -> sender.sendMessage(format(message)));
+            }
+            return;
+        }
         sender.sendMessage(format(message));
     }
 
     @Override
     public void sendActionbar(Player player, String message) {
+        if (isFolia()) {
+            scheduler().runFor(player, () -> sendLegacyActionbar(player, format(message)));
+            return;
+        }
         sendLegacyActionbar(player, format(message));
     }
 
     @Override
     public void sendTitle(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+        if (isFolia()) {
+            scheduler().runFor(player, () -> sendLegacyTitle(player, format(title), format(subtitle), fadeIn, stay, fadeOut));
+            return;
+        }
         sendLegacyTitle(player, format(title), format(subtitle), fadeIn, stay, fadeOut);
     }
 
