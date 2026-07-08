@@ -1,6 +1,6 @@
 # DadaPlatform
 
-**Versione:** `26.1`
+**Versione:** `26.1.1`
 
 DadaPlatform e' un piccolo core Java 8 per plugin Minecraft che centralizza l'invio di messaggi formattati e task compatibili tra Spigot, Paper e Folia.
 
@@ -37,7 +37,7 @@ Poi nel plugin che usa il core:
 <dependency>
     <groupId>me.mrbast</groupId>
     <artifactId>Platform</artifactId>
-    <version>26.1</version>
+    <version>26.1.1</version>
 </dependency>
 ```
 
@@ -285,7 +285,7 @@ mvn clean package
 Il jar viene generato in:
 
 ```text
-target/Platform-26.1.jar
+target/Platform-26.1.1.jar
 ```
 
 ## Compatibilita
