@@ -68,6 +68,15 @@ public class PaperPlatform extends Platform {
     }
 
     @Override
+    public void sendActionbar(Player player, String message, String font) {
+        String formatted = format(message);
+        if (font != null && !font.trim().isEmpty() && SpigotPlatform.sendNativeActionbar(player, formatted, font)) {
+            return;
+        }
+        sendActionbar(player, message);
+    }
+
+    @Override
     public void sendTitle(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
         Title adventureTitle = Title.title(
                 toComponent(title),

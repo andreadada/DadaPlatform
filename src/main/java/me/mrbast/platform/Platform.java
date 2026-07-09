@@ -156,8 +156,7 @@ public abstract class Platform {
         return scheduler.scheduleAtLater(location, task, delayTicks);
     }
 
-    public PlatformTask scheduleAtRepeating(Location location, Runnable task,
-                                            long initialDelayTicks, long periodTicks) {
+    public PlatformTask scheduleAtRepeating(Location location, Runnable task, long initialDelayTicks, long periodTicks) {
         return scheduler.scheduleAtRepeating(location, task, initialDelayTicks, periodTicks);
     }
 
@@ -169,8 +168,7 @@ public abstract class Platform {
         return scheduler.scheduleForLater(entity, task, delayTicks);
     }
 
-    public PlatformTask scheduleForRepeating(Entity entity, Runnable task,
-                                             long initialDelayTicks, long periodTicks) {
+    public PlatformTask scheduleForRepeating(Entity entity, Runnable task, long initialDelayTicks, long periodTicks) {
         return scheduler.scheduleForRepeating(entity, task, initialDelayTicks, periodTicks);
     }
 
@@ -180,6 +178,9 @@ public abstract class Platform {
     public abstract void sendMessage(Player player, String message);
     public abstract void sendMessage(CommandSender sender, String message);
     public abstract void sendActionbar(Player player, String message);
+    public void sendActionbar(Player player, String message, String font) {
+        sendActionbar(player, message);
+    }
     public abstract void sendTitle(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut);
 
     public void sendActionBar(Player player, String message) {

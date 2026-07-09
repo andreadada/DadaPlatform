@@ -30,6 +30,11 @@ public class FoliaPlatform extends PaperPlatform {
     }
 
     @Override
+    public void sendActionbar(Player player, String message, String font) {
+        scheduler().runFor(player, () -> FoliaPlatform.super.sendActionbar(player, message, font));
+    }
+
+    @Override
     public void sendTitle(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
         scheduler().runFor(player, () -> FoliaPlatform.super.sendTitle(player, title, subtitle, fadeIn, stay, fadeOut));
     }
